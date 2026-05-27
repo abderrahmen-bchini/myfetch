@@ -1,0 +1,71 @@
+.TH MYFETCH 1 "2026" "myfetch" "User Commands"
+.SH NAME
+myfetch \- a retro distro information fetcher
+.SH SYNOPSIS
+.B myfetch
+[\fIOPTIONS\fR]
+.SH DESCRIPTION
+.B myfetch
+displays system information alongside ASCII art, centered in the terminal.
+It reads system data directly from Linux kernel interfaces — no shell subprocesses.
+.PP
+Displayed fields: OS, Kernel, Uptime, Shell, Terminal, CPU (with temperature),
+GPU, Packages, Memory, Disk, and Battery (when present).
+.SH OPTIONS
+.TP
+.BR \-a ", " \-\-ascii " " \fIfile\fR
+Load ASCII art from \fIfile\fR instead of the default.
+.TP
+.BR \-f ", " \-\-force\-logo " " \fIname\fR
+Force a built-in distro logo. Supported names:
+.BR arch ", " debian ", " ubuntu ", " fedora ", " alpine ", " kali ", " gentoo ", "
+.BR mint ", " nixos ", " redhat ", " linux ", " default .
+.TP
+.BR \-t ", " \-\-theme " " \fIname\fR
+Apply a named color theme to borders and labels.
+Available themes:
+.BR nord ", " dracula ", " gruvbox ", " catppuccin ", " amber ", " default .
+.br
+\fBdefault\fR auto-selects a color based on the running distro.
+.TP
+.BR \-n ", " \-\-no\-center\-v
+Disable full-screen vertical centering. Useful for scrollback-friendly output.
+.TP
+.BR \-h ", " \-\-help
+Print a usage summary and exit.
+.SH FILES
+.TP
+.I ~/.config/myfetch/ascii.txt
+User-specific ASCII art. Checked first (after \fB\-a\fR).
+.TP
+.I /usr/share/myfetch/ascii.txt
+System-wide default ASCII art installed by \fBmake install\fR.
+.TP
+.I ./ascii.txt
+Fallback when running from the source directory.
+.SH EXAMPLES
+Run with default settings:
+.PP
+.RS
+.B myfetch
+.RE
+.PP
+Use the Nord color theme without vertical centering:
+.PP
+.RS
+.B myfetch \-t nord \-n
+.RE
+.PP
+Force the Arch logo with Dracula colors:
+.PP
+.RS
+.B myfetch \-f arch \-t dracula
+.RE
+.PP
+Use a custom ASCII art file:
+.PP
+.RS
+.B myfetch \-a ~/my-art.txt
+.RE
+.SH AUTHOR
+Written by abderrahmen bchini.
