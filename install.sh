@@ -17,8 +17,10 @@ echo "Building myfetch..."
 gcc -O2 -Wall -Wextra "$SCRIPT_DIR/myfetch.c" -o "$SCRIPT_DIR/myfetch"
 
 echo "Installing to $PREFIX ..."
-install -Dm755 "$SCRIPT_DIR/myfetch"   "$BINDIR/myfetch"
-install -Dm644 "$SCRIPT_DIR/ascii.txt" "$DATADIR/ascii.txt"
+install -Dm755 "$SCRIPT_DIR/myfetch" "$BINDIR/myfetch"
+if [ -f "$SCRIPT_DIR/ascii.txt" ]; then
+    install -Dm644 "$SCRIPT_DIR/ascii.txt" "$DATADIR/ascii.txt"
+fi
 if [ -f "$SCRIPT_DIR/myfetch.1" ]; then
     install -Dm644 "$SCRIPT_DIR/myfetch.1" "$MANDIR/myfetch.1"
 fi
@@ -27,7 +29,7 @@ echo ""
 echo "Installed: $BINDIR/myfetch"
 echo ""
 echo "To use your own ASCII art:"
-echo "  mkdir -p ~/.config/myfetch"
-echo "  cp $SCRIPT_DIR/ascii.txt ~/.config/myfetch/ascii.txt"
+echo "mkdir -p ~/.config/myfetch"
+echo "p /path/to/your/ascii.txt ~/.config/myfetch/ascii.txt"
 echo ""
 echo "Run 'myfetch -h' for all options."
